@@ -29,7 +29,7 @@ class SettingsTestCase(TestCase):
         self.assertIsNotNone(settings.DATABASES['default']['NAME'])
 
     def test_static_files_settings(self):
-        self.assertEqual(settings.STATIC_URL, 'static/')
+        self.assertEqual(settings.STATIC_URL, '/static/')
         self.assertIsNotNone(settings.MEDIA_ROOT)
         self.assertEqual(settings.MEDIA_URL, '/media/')
 
