@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-opw7sc^v#zov+0p@gy#f1@*%nh=smf+#qks@!=s2t2+4sm4qnl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # Protects against Cross-Site Request Forgery (CSRF)
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',  # Protects against Clickjacking
 ]
 
 ROOT_URLCONF = 'lvlsix.urls'
@@ -138,3 +140,11 @@ LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
 
 ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', 'employee-dev.azurewebsites.net', 'www.employee-dev.azurewebsites.net', 'employeeblog.azurewebsites.net']
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
